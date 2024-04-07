@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <br>
   <img width="240" src="./src/assets/tapps.png" alt="logo of telegram web apps">
