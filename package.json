@@ -10,12 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rollup/plugin-inject": "^5.0.5",
-    "@tonconnect/ui-react": "^2.0.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
     "@twa-dev/mark42": "^0.0.38",
-    "@twa-dev/sdk": "^6.7.1",
+    "@twa-dev/sdk": "^7.0.0",
     "@types/crypto-js": "^4.2.2",
-    "@vitejs/plugin-basic-ssl": "^1.0.1",
+    "@types/react-transition-group": "^4.4.10",
+    "autosuggest-highlight": "^3.3.4",
     "axios": "^1.6.8",
     "better-scroll": "^2.5.1",
     "crypto-js": "^4.2.0",
@@ -26,14 +29,16 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-telegram-auth": "^1.0.4",
-    "tonweb": "^0.0.66"
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
+    "@rollup/plugin-inject": "^5.0.5",
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",

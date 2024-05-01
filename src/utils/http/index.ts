@@ -1,33 +1,36 @@
-import { AxiosHeaders, AxiosPromise, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import {AxiosError, AxiosHeaders, AxiosInstance, AxiosPromise, AxiosResponse, InternalAxiosRequestConfig} from 'axios';
 import { Interceptors } from './request';
 import { Method, RawAxiosRequestHeaders } from 'axios';
 
-interface RequestConfigType {
-    url?: string;
+export interface RequestConfigType {
+    url: string;
     method?: Method | string;
     headers?: RawAxiosRequestHeaders | AxiosHeaders;
-    params?: any;
-    data?: any;
+    params?: unknown;
+    data?: unknown;
     duplicateRequestValidation?: boolean;
     duplicateRequestValidationTime?: number;
 }
-
+// export interface AxiosError {
+//     code: number,
+//     msg?: string;
+// }
 // 请求配置
 export class HttpServer {
-    axios: any;
+    axios: AxiosInstance;
     // 初始化对象 获取axios实例
     constructor() {
         this.axios = new Interceptors().getInterceptors();
     }
     // 简单封装一下方法
-    request(config: RequestConfigType): AxiosPromise {
+    request<T>(config: RequestConfigType): Promise<T> {
         return new Promise((resolve, reject) => {
-            this.axios(config as InternalAxiosRequestConfig)
-                .then((res: AxiosResponse) => {
-                    resolve(res);
+            this.axios<T>(config as InternalAxiosRequestConfig)
+                .then((res) => {
+                    resolve(res as T);
                 })
-                .catch((err: any) => {
-                    reject(err);
+                .catch((err) => {
+                    reject(err as AxiosError);
                 });
         });
     }
@@ -39,8 +42,8 @@ export class HttpServer {
                 .then((res: AxiosResponse) => {
                     resolve(res);
                 })
-                .catch((err: any) => {
-                    reject(err);
+                .catch((err) => {
+                    reject(err as AxiosError);
                 });
         });
     }
@@ -52,8 +55,8 @@ export class HttpServer {
                 .then((res: AxiosResponse) => {
                     resolve(res);
                 })
-                .catch((err: any) => {
-                    reject(err);
+                .catch((err) => {
+                    reject(err as AxiosError);
                 });
         });
     }
@@ -65,8 +68,8 @@ export class HttpServer {
                 .then((res: AxiosResponse) => {
                     resolve(res);
                 })
-                .catch((err: any) => {
-                    reject(err);
+                .catch((err) => {
+                    reject(err as AxiosError);
                 });
         });
     }
@@ -78,8 +81,8 @@ export class HttpServer {
                 .then((res: AxiosResponse) => {
                     resolve(res);
                 })
-                .catch((err: any) => {
-                    reject(err);
+                .catch((err) => {
+                    reject(err as AxiosError);
                 });
         });
     }
@@ -91,8 +94,8 @@ export class HttpServer {
                 .then((res: AxiosResponse) => {
                     resolve(res);
                 })
-                .catch((err: any) => {
-                    reject(err);
+                .catch((err) => {
+                    reject(err as AxiosError);
                 });
         });
     }

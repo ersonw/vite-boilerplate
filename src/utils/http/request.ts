@@ -49,42 +49,23 @@ export class Interceptors {
             },
             (error) => {
                 // 对请求错误做些什么 直接抛出错误
-                Promise.reject(error);
+                return Promise.reject(error);
             }
         );
         // 添加响应拦截器
         this.instance.interceptors.response.use(
             (response: AxiosResponse) => {
                 // 在这里的话你就可以去处理你响应成功的自定义逻辑
-
-                // 根据后端返回的code值。比如约定的是20000代表登录过期
-                // const res: any = response.data // 获取响应值
-                // if (res.code === 20000) {
-                //     // 清楚token 跳转登录页面
-                // }
-
-                // 比如10000表示请求成功，约定40000~50000不做拦截
-                // const filterCode = Math.abs(parseInt(res.code)) >= 40000 && Math.abs(parseInt(res.code)) < 50000
-                // if (res.code !== 10000 && !filterCode) {
-                //     // 这里去处理请求失败的逻辑
-                // } else {
-                //     return response.data
-                // }
                 this.removeRequestQueue(response.config);
                 const {code,msg,data} = response.data;
-                // console.log({code,msg,data});
                 if (code === 0){
                     return data;
                 }
-                const message: {msg: string,code: number} = {msg, code};
-                if (msg){
-                    message.msg = msg;
-                    // WebApp.showAlert(msg);
-                }
+                const error: AxiosError = new AxiosError(msg||'网络异常，请稍后~');
                 if (code){
-                    message.code = code;
+                    error.code = code;
                 }
-                return Promise.reject((code || msg) ? message : new Error('网络异常，请稍后~'));
+                return Promise.reject(error);
             },
             (error: AxiosError) => {
                 // 对响应错误做点什么
@@ -104,9 +85,8 @@ export class Interceptors {
                 } else if (error.response?.status) {
                     message = errorCodeType(error.response?.status);
                 }
-                // WebApp.showAlert(message);
                 console.log('👉👉👉-----------------', message);
-                return Promise.reject(error);
+                return Promise.reject({...error,message});
             }
         );
     }

@@ -23,19 +23,19 @@ export default defineConfig({
   base: './',
   server:{
     proxy: {
-      '/api': {
-        target: 'http://localhost',
-        changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api/, 'api')
-      },
-      '/web': {
-        target: 'http://localhost',
-        changeOrigin: false,
-      },
-      '/img': {
-        target: 'http://localhost',
-        changeOrigin: false,
-      }
+      // '/api': {
+      //   target: 'http://localhost',
+      //   changeOrigin: true,
+      //   // rewrite: (path) => path.replace(/^\/api/, 'api')
+      // },
+      // '/web': {
+      //   target: 'http://localhost',
+      //   changeOrigin: false,
+      // },
+      // '/img': {
+      //   target: 'http://localhost',
+      //   changeOrigin: false,
+      // }
     },
     // cors: {
     //   origin: 'https://localhost',
